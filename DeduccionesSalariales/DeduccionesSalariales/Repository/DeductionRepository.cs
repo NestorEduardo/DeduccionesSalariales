@@ -1,7 +1,10 @@
 ﻿using DeduccionesSalariales.Models;
 using DeduccionesSalariales.Repository.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,14 +12,24 @@ namespace DeduccionesSalariales.Repository
 {
     public class DeductionRepository : IDeductionRepository
     {
-        private readonly ApplicationDbContext context;
-        public DeductionRepository(ApplicationDbContext context)
+        public readonly IConfiguration configuration;
+        public DeductionRepository(IConfiguration configuration)
         {
-            this.context = context;
+            this.configuration = configuration;
         }
         public async Task<ICollection<Deduction>> GetDeductions(decimal netSalary)
         {
-            return await context.Deductions.Where(d => d.FromSalary >= netSalary && d.UntilSalary <= netSalary && d.IsActive).ToListAsync();
+            string jsonResult = "";
+
+            using (StreamReader streamReader = new StreamReader("appsettings.json"))
+            {
+                jsonResult = streamReader.ReadToEnd();
+            }
+
+            var x  = JsonConvert.DeserializeObject<List<Deduction>>(jsonResult);
+
+
+            return null;
         }
     }
 }

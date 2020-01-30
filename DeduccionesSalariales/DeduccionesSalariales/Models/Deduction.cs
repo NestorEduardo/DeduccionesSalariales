@@ -2,12 +2,11 @@
 {
     public class Deduction
     {
-        public int Id { get; set; }
         public string Name { get; set; }
-        public double RelativeDeduction { get; set; }
-        public decimal AbsoluteDeduction { get; set; }
-        public decimal FromSalary { get; set; }
-        public decimal UntilSalary { get; set; }
-        public bool IsActive { get; set; }
+        public string RelativeDeduction { get; set; }
+        public string AbsoluteDeduction { get; set; }
+        public string FromSalary { get; set; }
+        public string UntilSalary { get; set; }
+        public string MaximumDeduction { get; set; }
     }
 }

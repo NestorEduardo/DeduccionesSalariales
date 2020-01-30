@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using DeduccionesSalariales.Models;
-using DeduccionesSalariales.Services;
+﻿using DeduccionesSalariales.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeduccionesSalariales.Controllers
@@ -10,16 +7,17 @@ namespace DeduccionesSalariales.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        private readonly DeductionService deductionService;
-        public HomeController(DeductionService deductionService)
+        private readonly IDeductionService deductionService;
+        public HomeController(IDeductionService deductionService)
         {
             this.deductionService = deductionService;
         }
 
         [HttpGet]
-        public IEnumerable<Deduction> GetDeductions(decimal salary)
+        public int GetDeductions(decimal salary)
         {
-            throw new NotImplementedException("");
+            deductionService.GetDeductions(salary);
+            return 1;
         }
     }
 }

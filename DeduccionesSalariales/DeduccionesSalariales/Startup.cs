@@ -1,4 +1,7 @@
 using DeduccionesSalariales.Repository;
+using DeduccionesSalariales.Repository.Abstract;
+using DeduccionesSalariales.Services;
+using DeduccionesSalariales.Services.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -16,6 +19,8 @@ namespace DeduccionesSalariales
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:DeduccionesSalariales:ConnectionString"]));
+            services.AddTransient<IDeductionService, DeductionService>();
+            services.AddTransient<IDeductionRepository, DeductionRepository>();
             services.AddControllersWithViews();
             services.AddSpaStaticFiles(configuration =>
             {
