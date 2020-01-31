@@ -1,12 +1,15 @@
-﻿namespace DeduccionesSalariales.Models
+﻿using System.Collections.Generic;
+
+namespace DeduccionesSalariales.Models
 {
     public class Deduction
     {
         public string Name { get; set; }
-        public string RelativeDeduction { get; set; }
-        public string AbsoluteDeduction { get; set; }
-        public string FromSalary { get; set; }
-        public string UntilSalary { get; set; }
-        public string MaximumDeduction { get; set; }
+        public string Description { get; set; }
+        public decimal RelativeDeduction { get; set; }
+        public decimal AbsoluteDeduction { get; set; }
+        public decimal FromSalary { get; set; }
+        public decimal UntilSalary { get; set; }
+        public decimal MaximumDeduction { get; set; }
     }
 }

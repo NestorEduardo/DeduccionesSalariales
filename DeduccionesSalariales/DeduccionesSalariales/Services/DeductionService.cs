@@ -1,5 +1,4 @@
 ﻿using DeduccionesSalariales.Models;
-using DeduccionesSalariales.Repository;
 using DeduccionesSalariales.Repository.Abstract;
 using DeduccionesSalariales.Services.Abstract;
 using System.Collections.Generic;
@@ -14,6 +13,6 @@ namespace DeduccionesSalariales.Services
         {
             this.deductionRepository = deductionRepository;
         }
-        public async Task<ICollection<Deduction>> GetDeductions(decimal netSalary) => await deductionRepository.GetDeductions(netSalary);
+        public Deductions GetDeductions(decimal netSalary) => deductionRepository.GetDeductions(netSalary);
     }
 }
